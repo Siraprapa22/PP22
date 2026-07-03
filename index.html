@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AE-CDP // Delta Electronics Career Planner</title>
+  <!-- Google Fonts: Orbitron for telemetry/digital styles, Inter for crisp readability -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background grid & lighting effects for SCADA dashboard vibe -->
+  <div class="scada-grid-overlay"></div>
+  <div class="glow-orb glow-orb-1"></div>
+  <div class="glow-orb glow-orb-2"></div>
+
+  <div class="dashboard-wrapper">
+    
+    <!-- Sidebar Navigation Controls -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="4" />
+            <circle cx="12" cy="12" r="6" />
+            <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">DELTA-SYS</span>
+          <span class="brand-subtitle">AE-CDP v1.0.4</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#home" class="nav-item active" data-tooltip="Home Dashboard">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="9" rx="1" />
+              <rect x="14" y="3" width="7" height="5" rx="1" />
+              <rect x="14" y="12" width="7" height="9" rx="1" />
+              <rect x="3" y="16" width="7" height="5" rx="1" />
+            </svg>
+          </span>
+          <span class="nav-label">Main Panel</span>
+        </a>
+        
+        <a href="#english" class="nav-item" data-tooltip="English Telemetry">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+              <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+            </svg>
+          </span>
+          <span class="nav-label">English Dev</span>
+        </a>
+        
+        <a href="#technical" class="nav-item" data-tooltip="Technical Engine">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" />
+            </svg>
+          </span>
+          <span class="nav-label">Technical Dev</span>
+        </a>
+
+        <a href="#ai-coding" class="nav-item" data-tooltip="Agentic AI Compiler">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+              <path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" />
+            </svg>
+          </span>
+          <span class="nav-label">Agentic AI</span>
+        </a>
+
+        <a href="#skills-calibration" class="nav-item" data-tooltip="Calibration Console">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="4" y1="21" x2="4" y2="14" />
+              <line x1="4" y1="10" x2="4" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="12" />
+              <line x1="12" y1="8" x2="12" y2="3" />
+              <line x1="20" y1="21" x2="20" y2="16" />
+              <line x1="20" y1="12" x2="20" y2="3" />
+              <line x1="1" y1="14" x2="7" y2="14" />
+              <line x1="9" y1="8" x2="15" y2="8" />
+              <line x1="17" y1="16" x2="23" y2="16" />
+            </svg>
+          </span>
+          <span class="nav-label">Skills Console</span>
+        </a>
+
+        <a href="#checklist" class="nav-item" data-tooltip="Commissioning Checklist">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 11l3 3L22 4" />
+              <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+            </svg>
+          </span>
+          <span class="nav-label">Checklist</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-status-panel">
+        <div class="status-indicator-row">
+          <span class="status-dot online"></span>
+          <span class="status-label">SYS_STATE: ONLINE</span>
+        </div>
+        <div class="status-indicator-row">
+          <span class="status-dot processing"></span>
+          <span class="status-label">AI_CORE: ACTIVE</span>
+        </div>
+        <div class="status-indicator-row">
+          <span class="status-dot standby"></span>
+          <span class="status-label">COMM_LINK: ENCRYPTED</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      
+      <!-- Top SCADA Telemetry Header -->
+      <header class="header">
+        <div class="header-title-area">
+          <span class="scada-preamble">SYSTEM TELEMETRY CONSOLE // DE-AE-CDP</span>
+          <h1 class="header-main-title">AUTOMATION ENGINEER CAREER PLANNER</h1>
+        </div>
+
+        <!-- Live Metrics Indicators -->
+        <div class="header-telemetry">
+          <div class="telemetry-item">
+            <span class="tel-label">TARGET SYSTEM</span>
+            <span class="tel-val font-digital">DELTA-ELECTRONICS</span>
+          </div>
+
+          <div class="telemetry-item">
+            <span class="tel-label">OVERALL READINESS</span>
+            <div class="readiness-progress-wrapper">
+              <span id="readiness-pct-text" class="tel-val font-digital glow-cyan">0%</span>
+              <div class="progress-mini-bar">
+                <div id="readiness-mini-fill" class="progress-mini-fill" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="telemetry-item hide-mobile">
+            <span class="tel-label">SYSTEM CLOCK</span>
+            <span id="live-clock" class="tel-val font-digital">16:50:56</span>
+          </div>
+
+          <div class="telemetry-item hide-tablet">
+            <span class="tel-label">SYSTEM STATE</span>
+            <div class="state-glow-badge">
+              <span class="pulse-ring"></span>
+              <span class="state-text">OPTIMIZING</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Grid -->
+      <main class="dashboard-grid">
+        
+        <!-- SECTION 1: HOME DASHBOARD -->
+        <section id="home" class="dashboard-section active-section grid-span-full">
+          <div class="scada-card primary-card">
+            <div class="card-edge-glow"></div>
+            <div class="card-header">
+              <div class="card-title-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+              </div>
+              <h2 class="card-title">SYSTEM SUMMARY & FOCUS DATA</h2>
+              <span class="system-id font-digital">NODE_01_SYS_STAT</span>
+            </div>
+            
+            <div class="card-body grid-2-col">
+              
+              <!-- Engineering Profile Detail -->
+              <div class="profile-block">
+                <div class="profile-avatar-placeholder">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                  <div class="scanner-line"></div>
+                </div>
+                <div class="profile-info-grid">
+                  <div class="info-field">
+                    <span class="info-label">STUDENT OPERATOR</span>
+                    <span class="info-value font-digital editable-field" id="student-name" contenteditable="true" spellcheck="false">Alex Chen</span>
+                  </div>
+                  <div class="info-field">
+                    <span class="info-label">TARGET ENTERPRISE</span>
+                    <span class="info-value font-digital">Delta Electronics</span>
+                  </div>
+                  <div class="info-field">
+                    <span class="info-label">TARGET DESIG</span>
+                    <span class="info-value font-digital highlight-yellow">Automation Engineer</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Career Goal Telemetry -->
+              <div class="goal-block">
+                <div class="goal-header">
+                  <span class="goal-label">CORE MISSION OBJECTIVE</span>
+                  <div class="terminal-dots">
+                    <span class="dot green"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot red"></span>
+                  </div>
+                </div>
+                <div class="goal-terminal">
+                  <p class="terminal-text font-digital text-typewriter">
+                    &gt; Target: Design, calibrate, and optimize automated manufacturing frameworks and smart factory PLC nodes at Delta Electronics. Integrating advanced agentic AI tools (LSCI Platform) to resolve machine exceptions and sustain peak line telemetry.
+                  </p>
+                </div>
+                <!-- Mini Stats readout -->
+                <div class="mini-telemetry-strip">
+                  <div class="strip-item">
+                    <span class="strip-lbl">LOAD RATE</span>
+                    <span class="strip-val font-digital">92.4%</span>
+                  </div>
+                  <div class="strip-item">
+                    <span class="strip-lbl">TEMP TEMP</span>
+                    <span class="strip-val font-digital text-warning">42°C</span>
+                  </div>
+                  <div class="strip-item">
+                    <span class="strip-lbl">MEM CACHE</span>
+                    <span class="strip-val font-digital">OK</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: ENGLISH DEVELOPMENT -->
+        <section id="english" class="dashboard-section grid-span-half">
+          <div class="scada-card font-inter">
+            <div class="card-header">
+              <div class="card-title-icon text-cyan">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                  <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+                </svg>
+              </div>
+              <h2 class="card-title">ENGLISH TELEMETRY PLAN</h2>
+              <span class="system-id font-digital font-bold text-cyan">CTRL_LANG_COMMS</span>
+            </div>
+            
+            <div class="card-body">
+              <!-- Goals Badges -->
+              <div class="target-badges-row">
+                <div class="badge-card">
+                  <span class="badge-lbl">TOEIC THRESHOLD</span>
+                  <span class="badge-val text-cyan">750+ Score</span>
+                </div>
+                <div class="badge-card">
+                  <span class="badge-lbl">CEFR TELEMETRY</span>
+                  <span class="badge-val text-green">B2 Standard</span>
+                </div>
+              </div>
+
+              <!-- 4-Month Timeline -->
+              <div class="timeline-stepper">
+                
+                <div class="timeline-step">
+                  <div class="step-marker">
+                    <div class="step-num font-digital">01</div>
+                    <div class="step-line"></div>
+                  </div>
+                  <div class="step-details">
+                    <h4 class="step-title">Month 1: Foundation Calibration</h4>
+                    <ul class="step-bullets">
+                      <li>Grammar diagnostic & tuning</li>
+                      <li>Technical Vocabulary compilation (sensors, actuators, PLC tags)</li>
+                      <li>General & Industry Listening drills</li>
+                    </ul>
+                    <div class="progress-bar-container">
+                      <div class="progress-bar-fill" style="width: 100%;"></div>
+                      <span class="progress-pct font-digital">100%</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="timeline-step">
+                  <div class="step-marker">
+                    <div class="step-num font-digital">02</div>
+                    <div class="step-line"></div>
+                  </div>
+                  <div class="step-details">
+                    <h4 class="step-title">Month 2: Applied Engineering</h4>
+                    <ul class="step-bullets">
+                      <li>TOEIC exam pattern training & mock exercises</li>
+                      <li>Engineering schematics reading & troubleshooting logs</li>
+                    </ul>
+                    <div class="progress-bar-container">
+                      <div class="progress-bar-fill" style="width: 65%;"></div>
+                      <span class="progress-pct font-digital">65%</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="timeline-step">
+                  <div class="step-marker">
+                    <div class="step-num font-digital">03</div>
+                    <div class="step-line"></div>
+                  </div>
+                  <div class="step-details">
+                    <h4 class="step-title">Month 3: Production Stress Test</h4>
+                    <ul class="step-bullets">
+                      <li>Full TOEIC Mock Test simulations</li>
+                      <li>Technical Documents & operations manuals processing</li>
+                    </ul>
+                    <div class="progress-bar-container">
+                      <div class="progress-bar-fill" style="width: 25%;"></div>
+                      <span class="progress-pct font-digital">25%</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="timeline-step">
+                  <div class="step-marker">
+                    <div class="step-num font-digital">04</div>
+                    <div class="step-line"></div>
+                  </div>
+                  <div class="step-details">
+                    <h4 class="step-title">Month 4: Commissioning & Signoff</h4>
+                    <ul class="step-bullets">
+                      <li>Interview simulation & behavioral question routing</li>
+                      <li>TOEIC Official Certification Exam entry</li>
+                    </ul>
+                    <div class="progress-bar-container">
+                      <div class="progress-bar-fill" style="width: 0%;"></div>
+                      <span class="progress-pct font-digital">0%</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: TECHNICAL DEVELOPMENT -->
+        <section id="technical" class="dashboard-section grid-span-half">
+          <div class="scada-card">
+            <div class="card-header">
+              <div class="card-title-icon text-yellow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+                </svg>
+              </div>
+              <h2 class="card-title">TECHNICAL ENGINE & SYSTEMS</h2>
+              <span class="system-id font-digital text-yellow">MODULE_TECH_SYS</span>
+            </div>
+
+            <div class="card-body">
+              
+              <!-- Topic Info Card -->
+              <div class="tech-topic-banner">
+                <div class="topic-header">
+                  <span class="topic-tag">SELECTED DISCIPLINE</span>
+                  <h3>Industrial Automation</h3>
+                </div>
+                <div class="topic-reason">
+                  <p>
+                    <strong>Mission Context:</strong> Industrial Automation is an essential skill for Automation Engineers. It includes machine control, preventive maintenance, troubleshooting, production optimization, and industrial automation systems.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Course Info Widget -->
+              <div class="scada-sub-widget course-widget">
+                <div class="widget-header">
+                  <span class="sub-widget-tag font-digital">COURSE REGISTRY</span>
+                  <a href="https://www.elevify.com" target="_blank" class="course-link-badge">
+                    <span>ELEVIFY PLATFORM</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                    </svg>
+                  </a>
+                </div>
+                <div class="course-body">
+                  <h4 class="course-title">Industrial Automation</h4>
+                  <div class="course-specs">
+                    <div class="spec-node">
+                      <span class="spec-lbl">PROVIDER</span>
+                      <span class="spec-val">Elevify</span>
+                    </div>
+                    <div class="spec-node">
+                      <span class="spec-lbl">STATUS</span>
+                      <span class="spec-val status-running">IN PROGRESS</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Expected Outcomes -->
+              <div class="outcomes-widget">
+                <span class="outcomes-header font-digital">EXPECTED OUTCOMES (OUTPUT_TARGET)</span>
+                <div class="outcomes-grid">
+                  <div class="outcome-card">
+                    <div class="outcome-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    <div class="outcome-text">
+                      <h5>Industrial Automation</h5>
+                      <p>Understand the foundational methodologies and components of modern industrial automation.</p>
+                    </div>
+                  </div>
+
+                  <div class="outcome-card">
+                    <div class="outcome-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    <div class="outcome-text">
+                      <h5>Automation Systems</h5>
+                      <p>Comprehend overall system structure, layout, and control network hierarchies.</p>
+                    </div>
+                  </div>
+
+                  <div class="outcome-card">
+                    <div class="outcome-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    <div class="outcome-text">
+                      <h5>PLC & Machine Control</h5>
+                      <p>Apply foundational theoretical knowledge to program PLCs and configure physical machinery safely.</p>
+                    </div>
+                  </div>
+
+                  <div class="outcome-card">
+                    <div class="outcome-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    <div class="outcome-text">
+                      <h5>Career Preparation</h5>
+                      <p>Synthesize projects and simulations to prepare for an Automation Engineer role.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 4: AGENTIC AI CODING -->
+        <section id="ai-coding" class="dashboard-section grid-span-full">
+          <div class="scada-card">
+            <div class="card-header">
+              <div class="card-title-icon text-cyan">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                  <line x1="12" y1="22.08" x2="12" y2="12" />
+                </svg>
+              </div>
+              <h2 class="card-title">AGENTIC AI SYSTEMS INTEGRATION</h2>
+              <span class="system-id font-digital text-cyan">COPROC_LSCI_AI</span>
+            </div>
+
+            <div class="card-body">
+              
+              <!-- AI Meta Header -->
+              <div class="ai-meta-banner">
+                <div class="ai-plat-info">
+                  <span class="ai-lbl">AI ENGINE PLATFORM</span>
+                  <span class="ai-val">LSCI AI Platform</span>
+                </div>
+                <div class="system-pipeline-visual">
+                  <div class="pipeline-node active">
+                    <div class="node-dot"></div>
+                    <span>PROMPT ENG</span>
+                  </div>
+                  <div class="pipeline-connector active"></div>
+                  <div class="pipeline-node active">
+                    <div class="node-dot"></div>
+                    <span>PYTHON DEV</span>
+                  </div>
+                  <div class="pipeline-connector"></div>
+                  <div class="pipeline-node">
+                    <div class="node-dot"></div>
+                    <span>AUTO PROJ</span>
+                  </div>
+                  <div class="pipeline-connector"></div>
+                  <div class="pipeline-node">
+                    <div class="node-dot"></div>
+                    <span>PORTFOLIO</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AI learning roadmap timeline -->
+              <div class="ai-timeline-grid">
+                
+                <div class="ai-timeline-card active">
+                  <div class="card-glow-overlay"></div>
+                  <div class="ai-month font-digital">M01</div>
+                  <div class="ai-info">
+                    <h4>Prompt Engineering</h4>
+                    <p>Develop structured prompts, format outputs, and optimize API routing protocols for automated agents.</p>
+                  </div>
+                  <div class="ai-status-row">
+                    <span class="status-badge status-done">COMPLETED</span>
+                    <span class="progress-val font-digital">100%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar-fill" style="width: 100%;"></div>
+                  </div>
+                </div>
+
+                <div class="ai-timeline-card active">
+                  <div class="card-glow-overlay"></div>
+                  <div class="ai-month font-digital">M02</div>
+                  <div class="ai-info">
+                    <h4>Python Programming</h4>
+                    <p>Build automation scripts, parse file formats, manage virtual environments, and manipulate API payloads.</p>
+                  </div>
+                  <div class="ai-status-row">
+                    <span class="status-badge status-running">IN RUN</span>
+                    <span class="progress-val font-digital">45%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar-fill" style="width: 45%;"></div>
+                  </div>
+                </div>
+
+                <div class="ai-timeline-card">
+                  <div class="card-glow-overlay"></div>
+                  <div class="ai-month font-digital">M03</div>
+                  <div class="ai-info">
+                    <h4>Automation Project</h4>
+                    <p>Architect an operational flow tying AI intelligence to visual automation outputs and script executions.</p>
+                  </div>
+                  <div class="ai-status-row">
+                    <span class="status-badge status-pending">PENDING</span>
+                    <span class="progress-val font-digital">0%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar-fill" style="width: 0%;"></div>
+                  </div>
+                </div>
+
+                <div class="ai-timeline-card">
+                  <div class="card-glow-overlay"></div>
+                  <div class="ai-month font-digital">M04</div>
+                  <div class="ai-info">
+                    <h4>Portfolio Development</h4>
+                    <p>Publish project code repositories, compile readmes, and establish direct visual evidence of coding competency.</p>
+                  </div>
+                  <div class="ai-status-row">
+                    <span class="status-badge status-pending">PENDING</span>
+                    <span class="progress-val font-digital">0%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar-fill" style="width: 0%;"></div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 5: SKILLS DASHBOARD (CALIBRATION CONSOLE) -->
+        <section id="skills-calibration" class="dashboard-section grid-span-full">
+          <div class="scada-card">
+            <div class="card-header">
+              <div class="card-title-icon text-green">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="4" y1="21" x2="4" y2="14" />
+                  <line x1="4" y1="10" x2="4" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="12" />
+                  <line x1="12" y1="8" x2="12" y2="3" />
+                  <line x1="20" y1="21" x2="20" y2="16" />
+                  <line x1="20" y1="12" x2="20" y2="3" />
+                  <line x1="1" y1="14" x2="7" y2="14" />
+                  <line x1="9" y1="8" x2="15" y2="8" />
+                  <line x1="17" y1="16" x2="23" y2="16" />
+                </svg>
+              </div>
+              <h2 class="card-title">OPERATOR SKILLS CALIBRATION PANEL</h2>
+              <span class="system-id font-digital text-green">CALIBRATION_CMD</span>
+            </div>
+
+            <div class="card-body">
+              <div class="calibration-intro-row">
+                <p class="description-text">
+                  Drag the sliders to adjust your current skill levels. The circular telemetric gauges will update in real-time, and recalculate the overall Readiness Index.
+                </p>
+                <button id="reset-skills-btn" class="scada-btn btn-outline-warning">
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+                  </svg>
+                  <span>RESET SKILLS</span>
+                </button>
+              </div>
+
+              <!-- Skills Grid -->
+              <div class="skills-gauge-grid">
+                
+                <!-- Skill 1: Industrial Automation -->
+                <div class="gauge-card-interactive" data-skill-id="industrial-automation">
+                  <div class="dial-container">
+                    <svg class="circular-dial" viewBox="0 0 100 100">
+                      <circle class="dial-track" cx="50" cy="50" r="40" />
+                      <circle class="dial-fill" cx="50" cy="50" r="40" />
+                    </svg>
+                    <div class="dial-content">
+                      <span class="dial-percent font-digital glow-cyan" id="pct-val-industrial-automation">75%</span>
+                    </div>
+                  </div>
+                  <div class="gauge-slider-area">
+                    <label class="slider-label">Industrial Automation</label>
+                    <input type="range" class="scada-range-slider" id="slider-industrial-automation" min="0" max="100" value="75">
+                  </div>
+                </div>
+
+                <!-- Skill 2: PLC -->
+                <div class="gauge-card-interactive" data-skill-id="plc">
+                  <div class="dial-container">
+                    <svg class="circular-dial" viewBox="0 0 100 100">
+                      <circle class="dial-track" cx="50" cy="50" r="40" />
+                      <circle class="dial-fill" cx="50" cy="50" r="40" />
+                    </svg>
+                    <div class="dial-content">
+                      <span class="dial-percent font-digital glow-green" id="pct-val-plc">60%</span>
+                    </div>
+                  </div>
+                  <div class="gauge-slider-area">
+                    <label class="slider-label">PLC</label>
+                    <input type="range" class="scada-range-slider" id="slider-plc" min="0" max="100" value="60">
+                  </div>
+                </div>
+
+                <!-- Skill 3: English -->
+                <div class="gauge-card-interactive" data-skill-id="english">
+                  <div class="dial-container">
+                    <svg class="circular-dial" viewBox="0 0 100 100">
+                      <circle class="dial-track" cx="50" cy="50" r="40" />
+                      <circle class="dial-fill" cx="50" cy="50" r="40" />
+                    </svg>
+                    <div class="dial-content">
+                      <span class="dial-percent font-digital glow-cyan" id="pct-val-english">80%</span>
+                    </div>
+                  </div>
+                  <div class="gauge-slider-area">
+                    <label class="slider-label">English</label>
+                    <input type="range" class="scada-range-slider" id="slider-english" min="0" max="100" value="80">
+                  </div>
+                </div>
+
+                <!-- Skill 4: Python -->
+                <div class="gauge-card-interactive" data-skill-id="python">
+                  <div class="dial-container">
+                    <svg class="circular-dial" viewBox="0 0 100 100">
+                      <circle class="dial-track" cx="50" cy="50" r="40" />
+                      <circle class="dial-fill" cx="50" cy="50" r="40" />
+                    </svg>
+                    <div class="dial-content">
+                      <span class="dial-percent font-digital glow-cyan" id="pct-val-python">50%</span>
+                    </div>
+                  </div>
+                  <div class="gauge-slider-area">
+                    <label class="slider-label">Python</label>
+                    <input type="range" class="scada-range-slider" id="slider-python" min="0" max="100" value="50">
+                  </div>
+                </div>
+
+                <!-- Skill 5: Problem Solving -->
+                <div class="gauge-card-interactive" data-skill-id="problem-solving">
+                  <div class="dial-container">
+                    <svg class="circular-dial" viewBox="0 0 100 100">
+                      <circle class="dial-track" cx="50" cy="50" r="40" />
+                      <circle class="dial-fill" cx="50" cy="50" r="40" />
+                    </svg>
+                    <div class="dial-content">
+                      <span class="dial-percent font-digital glow-yellow" id="pct-val-problem-solving">85%</span>
+                    </div>
+                  </div>
+                  <div class="gauge-slider-area">
+                    <label class="slider-label">Problem Solving</label>
+                    <input type="range" class="scada-range-slider" id="slider-problem-solving" min="0" max="100" value="85">
+                  </div>
+                </div>
+
+                <!-- Skill 6: Communication -->
+                <div class="gauge-card-interactive" data-skill-id="communication">
+                  <div class="dial-container">
+                    <svg class="circular-dial" viewBox="0 0 100 100">
+                      <circle class="dial-track" cx="50" cy="50" r="40" />
+                      <circle class="dial-fill" cx="50" cy="50" r="40" />
+                    </svg>
+                    <div class="dial-content">
+                      <span class="dial-percent font-digital glow-cyan" id="pct-val-communication">70%</span>
+                    </div>
+                  </div>
+                  <div class="gauge-slider-area">
+                    <label class="slider-label">Communication</label>
+                    <input type="range" class="scada-range-slider" id="slider-communication" min="0" max="100" value="70">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 6: CAREER CHECKLIST -->
+        <section id="checklist" class="dashboard-section grid-span-full">
+          <div class="scada-card">
+            <div class="card-header">
+              <div class="card-title-icon text-cyan">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 11l3 3L22 4" />
+                  <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+                </svg>
+              </div>
+              <h2 class="card-title">SYSTEM COMMISSIONING CHECKLIST</h2>
+              <span class="system-id font-digital text-cyan">VERIFY_CDP_STAGE</span>
+            </div>
+
+            <div class="card-body">
+              <p class="description-text">
+                Toggle the critical commissioning bits below. Checking these targets completes segments of your profile, modifying overall readiness scoring.
+              </p>
+
+              <div class="checklist-grid">
+                
+                <!-- Category 1: English -->
+                <div class="checklist-group">
+                  <div class="group-header">
+                    <span class="group-icon">EN</span>
+                    <h3>English</h3>
+                  </div>
+                  <div class="group-items">
+                    
+                    <label class="scada-checkbox-label">
+                      <input type="checkbox" id="chk-toeic-750" class="scada-checkbox-input">
+                      <span class="scada-checkbox-custom"></span>
+                      <span class="checkbox-text">TOEIC 750</span>
+                    </label>
+
+                    <label class="scada-checkbox-label">
+                      <input type="checkbox" id="chk-cefr-b2" class="scada-checkbox-input">
+                      <span class="scada-checkbox-custom"></span>
+                      <span class="checkbox-text">CEFR B2</span>
+                    </label>
+
+                  </div>
+                </div>
+
+                <!-- Category 2: Technical -->
+                <div class="checklist-group">
+                  <div class="group-header">
+                    <span class="group-icon">TEC</span>
+                    <h3>Technical</h3>
+                  </div>
+                  <div class="group-items">
+                    
+                    <label class="scada-checkbox-label">
+                      <input type="checkbox" id="chk-industrial-automation" class="scada-checkbox-input">
+                      <span class="scada-checkbox-custom"></span>
+                      <span class="checkbox-text">Industrial Automation</span>
+                    </label>
+
+                    <label class="scada-checkbox-label">
+                      <input type="checkbox" id="chk-plc" class="scada-checkbox-input">
+                      <span class="scada-checkbox-custom"></span>
+                      <span class="checkbox-text">PLC</span>
+                    </label>
+
+                    <label class="scada-checkbox-label">
+                      <input type="checkbox" id="chk-troubleshooting" class="scada-checkbox-input">
+                      <span class="scada-checkbox-custom"></span>
+                      <span class="checkbox-text">Troubleshooting</span>
+                    </label>
+
+                  </div>
+                </div>
+
+                <!-- Category 3: AI -->
+                <div class="checklist-group">
+                  <div class="group-header">
+                    <span class="group-icon">AI</span>
+                    <h3>AI</h3>
+                  </div>
+                  <div class="group-items">
+                    
+                    <label class="scada-checkbox-label">
+                      <input type="checkbox" id="chk-lsci-ai" class="scada-checkbox-input">
+                      <span class="scada-checkbox-custom"></span>
+                      <span class="checkbox-text">LSCI AI Platform</span>
+                    </label>
+
+                    <label class="scada-checkbox-label">
+                      <input type="checkbox" id="chk-prompt-eng" class="scada-checkbox-input">
+                      <span class="scada-checkbox-custom"></span>
+                      <span class="checkbox-text">Prompt Engineering</span>
+                    </label>
+
+                    <label class="scada-checkbox-label">
+                      <input type="checkbox" id="chk-python" class="scada-checkbox-input">
+                      <span class="scada-checkbox-custom"></span>
+                      <span class="checkbox-text">Python</span>
+                    </label>
+
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Footer Console Output -->
+      <footer class="footer">
+        <div class="footer-left">
+          <span class="footer-status-label font-digital"><span class="blink-dot"></span> SYSTEM_LIVE // OK</span>
+          <span class="divider">|</span>
+          <span>Prepared for Automation Engineer Career Development</span>
+        </div>
+        <div class="footer-right">
+          <span class="footer-copyright font-digital">DELTA_AE_CDP_2026</span>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
